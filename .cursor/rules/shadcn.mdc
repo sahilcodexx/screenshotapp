@@ -1,0 +1,13 @@
+---
+description: shadcn/ui component system — Radix UI primitives, Tailwind CSS v4, new-york style
+globs: ["*.tsx", "*.ts", "*.css"]
+---
+
+- Components are source-code-owned (not a package dep). Edit them directly.
+- Use `npx shadcn@latest add <name>` to add components. Prefer `-o` to overwrite.
+- Init is done. `components.json` at root. Aliases: `@/components`, `@/lib/utils`, `@/components/ui`.
+- Style: `new-york`. Base: `zinc`. CSS variables in `@theme inline`.
+- All components use `cn()` from `@/lib/utils` for class merging.
+- Font: Geist Sans / Geist Mono via `next/font/google`. Set literal names in `@theme inline`, not `var(--font-geist-sans)`.
+- Use shadcn primitives before raw HTML elements. Button, Card, Dialog, etc. first.
+- Dark mode via `className="dark"` on `<html>`.

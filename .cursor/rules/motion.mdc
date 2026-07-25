@@ -1,0 +1,11 @@
+---
+description: Motion library (motion.dev) — the successor to Framer Motion for React
+globs: ["*.tsx", "*.ts"]
+---
+
+- Import from `motion`: `motion`, `AnimatePresence`, `useSpring`, etc.
+- Motion is the active development fork of Framer Motion. Prefer `motion` over `framer-motion` for new code.
+- Same API surface as Framer Motion: variants, gestures, layout, springs.
+- `useSpring` for interpolating values with spring physics (mouse tracking, scroll-driven).
+- Springs: prefer `{ type: "spring", duration: 0.5, bounce: 0.2 }`.
+- CSS `@starting-style` can replace the mounted-state pattern for simple entrances.

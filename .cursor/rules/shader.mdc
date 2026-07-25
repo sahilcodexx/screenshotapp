@@ -1,0 +1,13 @@
+---
+description: 3D graphics and shaders — Three.js, React Three Fiber, GLSL
+globs: ["*.tsx", "*.ts", "*.glsl", "*.frag", "*.vert"]
+---
+
+- Three.js: `import * as THREE from "three"`.
+- React Three Fiber: `@react-three/fiber` — declarative Three.js for React.
+- Drei: `@react-three/drei` — helpers (OrbitControls, Text, Float, MeshDistortMaterial).
+- Canvas: `<Canvas>` component from `@react-three/fiber` wraps the 3D scene.
+- Shaders: custom `shaderMaterial` via `three` or R3F's `ShaderMaterial`.
+- Use `useFrame` for per-frame updates, `useThree` for canvas access (camera, size, gl).
+- Performance: limit `useFrame` operations, use `memo` for heavy components, prefer instancing.
+- Suspense: wrap Canvas children in `<Suspense>` with a fallback for async assets (GLTF, textures).

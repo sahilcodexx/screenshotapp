@@ -1,0 +1,36 @@
+---
+description: Emil Kowalski's design engineering philosophy — UI polish, animation decisions, invisible details
+globs: ["*.tsx", "*.ts", "*.css"]
+---
+
+## Animation Decisions
+- Only animate `transform` and `opacity` (GPU-composited, skip layout/paint).
+- Never animate keyboard-triggered actions (used 100x/day — no animation).
+- UI animations: stay under 300ms. Button press: 100-160ms. Tooltips: 125-200ms. Modals: 200-500ms.
+- Use `ease-out` for entering elements, `ease-in-out` for on-screen movement.
+- Custom easing curves — never built-in CSS easings:
+  - `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`
+  - `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`
+
+## Component Rules
+- Buttons: `transform: scale(0.97)` on `:active` (160ms ease-out).
+- Never `scale(0)` — start from `scale(0.95)` + `opacity: 0`.
+- Popovers: use Radix/Base UI's `transform-origin` variable (not `center`). Modals keep `center`.
+- Tooltips: skip delay on subsequent hovers (set `transition-duration: 0ms` via `data-instant`).
+- Use CSS transitions (interruptible) over keyframes (restart from zero) for dynamic UI.
+- Stagger: 30-80ms delay between items. Keep stagger short — never block interaction.
+
+## Polish
+- `clip-path: inset()` for reveal effects, hold-to-delete, tab color transitions, image reveals.
+- Blur (`filter: blur(2px)`) masks imperfect crossfade transitions.
+- Exit faster than enter (e.g., enter 400ms, exit 200ms).
+- Velocity-based gesture dismissal (threshold ~0.11) — not just distance.
+- Damping at drag boundaries — friction instead of hard stops.
+- `@starting-style` for CSS-only enter animations.
+- Respect `prefers-reduced-motion`. Gate hover animations behind `@media (hover: hover)`.
+
+## Philosophy
+- Taste is trained instinct, not preference. Study great work. Reverse-engineer.
+- Unseen details compound — users don't notice individually, but feel the aggregate.
+- Beauty is leverage. Good defaults > many options.
+- Review animations with fresh eyes (next day). Inspect frame-by-frame.

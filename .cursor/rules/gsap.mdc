@@ -1,0 +1,12 @@
+---
+description: GSAP (GreenSock Animation Platform) — high-performance timeline-based animations
+globs: ["*.tsx", "*.ts", "*.js"]
+---
+
+- Import: `import gsap from "gsap"` or `import { gsap } from "gsap"`.
+- Timelines: `gsap.timeline()` for sequenced animations. Use `defaults` for shared config.
+- Scroll-driven: `gsap.registerPlugin(ScrollTrigger)` for scroll-based animations.
+- For React: use `useGSAP()` hook from `@gsap/react` or manage cleanup in `useEffect` return.
+- Performance: GSAP uses `requestAnimationFrame`. For scroll-triggered, prefer CSS where possible.
+- Easing: `"power2.out"`, `"power3.inOut"`, `"elastic.out(1, 0.5)"`.
+- DOM targets: use refs (`useRef`), not selector strings, in React.

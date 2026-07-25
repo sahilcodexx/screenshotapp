@@ -1,0 +1,13 @@
+---
+description: Framer Motion animation library for React — variants, gestures, layout animations
+globs: ["*.tsx", "*.ts"]
+---
+
+- Import from `framer-motion`: `motion`, `AnimatePresence`, `useMotionValue`, etc.
+- For HW acceleration, use `transform: "translateX(100px)"` string instead of `x: 100` shorthand.
+- Springs: prefer `{ type: "spring", duration: 0.5, bounce: 0.2 }` (Apple model).
+- CSS transitions beat JS animations under heavy load — use CSS for predetermined animations.
+- `AnimatePresence` for enter/exit animations. Use `mode="wait"` or `mode="popLayout"`.
+- Layout animations: `layoutId` prop for shared layout animations between elements.
+- Gestures: `whileHover`, `whileTap`, `whileFocus`, `whileDrag` on `motion` elements.
+- Drag: `drag="x"`, `onDragEnd` with velocity-based dismissal (threshold ~0.11).
