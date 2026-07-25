@@ -1,102 +1,58 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { motion } from "motion/react"
-import FluidBackground from "../fluid/FluidBackground"
 import dynamic from "next/dynamic"
 
 const FluidBg = dynamic(() => import("../fluid/FluidBackground"), { ssr: false })
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-dvh flex items-center justify-center overflow-hidden bg-black">
       <FluidBg />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 via-60% to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black pointer-events-none" />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 pointer-events-none" />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-medium tracking-widest uppercase text-pink-300/80 border border-pink-500/20 rounded-full bg-pink-500/5">
-            Coming Soon
-          </span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white"
-        >
-          <span className="bg-gradient-to-r from-white via-pink-200 to-pink-400 bg-clip-text text-transparent">
-            ScreenshotPro
-          </span>
-        </motion.h1>
-
-        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-6 text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
         >
-          Capture, annotate, and share stunning screenshots in seconds.
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]">
+            <span className="bg-gradient-to-br from-white via-white to-zinc-300 bg-clip-text text-transparent">
+              Screenshots
+            </span>
+            <br />
+            <span className="bg-gradient-to-br from-pink-300 via-pink-400 to-pink-600 bg-clip-text text-transparent">
+              done right.
+            </span>
+          </h1>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+          className="mt-5 text-base sm:text-lg text-zinc-500 max-w-lg mx-auto leading-relaxed"
+        >
+          Capture, annotate, and share in seconds.
+          <br />
           Built for teams who care about clarity.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <button className="group relative inline-flex h-12 items-center justify-center rounded-full bg-pink-500 px-8 text-sm font-medium text-white transition-all duration-200 hover:bg-pink-400 active:scale-[0.97]">
+          <button className="inline-flex h-11 items-center justify-center rounded-full bg-white px-7 text-sm font-medium text-black transition-all duration-150 hover:bg-white/90 active:scale-[0.97]">
             Get Started Free
           </button>
-          <button className="group relative inline-flex h-12 items-center justify-center rounded-full border border-zinc-700 px-8 text-sm font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-500 hover:text-white active:scale-[0.97]">
+          <button className="inline-flex h-11 items-center justify-center rounded-full border border-zinc-700 px-7 text-sm font-medium text-zinc-400 transition-all duration-150 hover:border-zinc-500 hover:text-white active:scale-[0.97]">
             Watch Demo
           </button>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 flex items-center justify-center gap-8 text-xs text-zinc-500"
-        >
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500/60" />
-            Instant Capture
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500/60" />
-            Smart Annotations
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500/60" />
-            Seamless Sharing
-          </span>
-        </motion.div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          className="text-zinc-500"
-        >
-          <path
-            d="M10 3v14M10 17l-5-5M10 17l5-5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
       </div>
     </section>
   )

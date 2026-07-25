@@ -1,104 +1,104 @@
 "use client"
 
 import { motion } from "motion/react"
+import {
+  Eye,
+  Shield,
+  Keyboard,
+  Users,
+  Blocks,
+  BarChart3,
+  Palette,
+} from "lucide-react"
 
 const items = [
   {
     title: "Real-time Preview",
-    desc: "See exactly how your screenshot will look before you capture. WYSIWYG at its finest.",
-    size: "col-span-1 md:col-span-2 row-span-1",
-    gradient: "from-pink-500/10 to-transparent",
-    border: "border-pink-500/10",
+    desc: "See exactly how it'll look before you capture. WYSIWYG at its best.",
+    icon: Eye,
+    span: "md:col-span-2",
   },
   {
     title: "99.9% Uptime",
-    desc: "Your screenshots are always accessible. Enterprise-grade infrastructure.",
-    size: "col-span-1 row-span-1",
-    gradient: "from-purple-500/10 to-transparent",
-    border: "border-purple-500/10",
+    desc: "Enterprise infrastructure. Always accessible.",
+    icon: Shield,
   },
   {
     title: "Keyboard First",
-    desc: "Every action has a shortcut. Move at the speed of thought.",
-    size: "col-span-1 row-span-1",
-    gradient: "from-cyan-500/10 to-transparent",
-    border: "border-cyan-500/10",
+    desc: "Every action has a shortcut. Never touch the mouse.",
+    icon: Keyboard,
   },
   {
     title: "Team Workspaces",
-    desc: "Shared libraries, consistent annotations, and approval workflows built in. Your team stays in sync.",
-    size: "col-span-1 md:col-span-2 row-span-1",
-    gradient: "from-orange-500/10 to-transparent",
-    border: "border-orange-500/10",
-    wide: true,
+    desc: "Shared libraries, annotation workflows, approval flows.",
+    icon: Users,
+    span: "md:col-span-2",
   },
   {
     title: "Integrations",
-    desc: "Slack, GitHub, Jira, Linear, Figma. Your screenshots flow where your work happens.",
-    size: "col-span-1 md:col-span-1 row-span-1",
-    gradient: "from-emerald-500/10 to-transparent",
-    border: "border-emerald-500/10",
+    desc: "Slack, GitHub, Jira, Linear, Figma — your screenshots flow where work happens.",
+    icon: Blocks,
+    span: "md:col-span-2",
   },
   {
     title: "Analytics",
-    desc: "See who viewed what and when. Know exactly when your team has seen the feedback.",
-    size: "col-span-1 md:col-span-1 row-span-1",
-    gradient: "from-rose-500/10 to-transparent",
-    border: "border-rose-500/10",
+    desc: "Know when your team has seen the feedback.",
+    icon: BarChart3,
   },
   {
     title: "Custom Branding",
-    desc: "White-label everything. Your brand, your domain, your screenshots.",
-    size: "col-span-1 md:col-span-2 row-span-1",
-    gradient: "from-blue-500/10 to-transparent",
-    border: "border-blue-500/10",
+    desc: "White-label everything. Your brand, your domain.",
+    icon: Palette,
   },
 ]
 
 export default function BentoGridSection() {
   return (
     <section className="relative py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-xs font-medium tracking-widest uppercase text-pink-400/60">
+          <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-zinc-500">
             Everything Included
           </span>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-white">
             One tool, endless possibilities
           </h2>
-          <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
-            More than just screenshots. A complete visual communication platform.
+          <p className="mt-2 text-sm text-zinc-500 max-w-sm mx-auto">
+            More than screenshots. A complete visual communication platform.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {items.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-60px" }}
               transition={{
-                duration: 0.6,
-                delay: i * 0.05,
+                duration: 0.5,
+                delay: i * 0.04,
                 ease: [0.23, 1, 0.32, 1],
               }}
-              className={`${item.size} relative group rounded-2xl border ${item.border} bg-zinc-900/30 p-8 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-900/50`}
+              className={`${item.span || ""} group relative rounded-xl border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all duration-300 hover:border-zinc-700/70 hover:bg-zinc-900/40`}
             >
-              <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
-              />
-              <div className="relative z-10">
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                  {item.desc}
-                </p>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="relative z-10 flex items-start gap-4">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/50 ring-1 ring-zinc-700/30">
+                  <item.icon className="h-4 w-4 text-zinc-400" />
+                </div>
+                <div>
+                  <h3 className="text-[15px] font-semibold text-white">{item.title}</h3>
+                  <p className="mt-1 text-sm text-zinc-500 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

@@ -3,10 +3,10 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 
-const paragraph =
-  "Every pixel tells a story. ScreenshotPro transforms how your team captures, annotates, and shares visual feedback. No more endless threads of unclear images — just crisp, contextual screenshots that communicate exactly what you mean. From design reviews to bug reports, make every capture count."
+const text =
+  "Every pixel tells a story. ScreenshotPro transforms how your team captures, annotates, and shares visual feedback. No more endless threads of unclear images. Just crisp, contextual screenshots that communicate exactly what you mean."
 
-const words = paragraph.split(" ")
+const words = text.split(" ")
 
 export default function ScrollHighlightSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -17,9 +17,9 @@ export default function ScrollHighlightSection() {
   })
 
   return (
-    <section className="relative py-48" ref={ref}>
+    <section ref={ref} className="relative py-48 md:py-56">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.p className="text-2xl sm:text-3xl md:text-4xl leading-relaxed text-zinc-600 font-medium">
+        <p className="text-2xl sm:text-3xl md:text-4xl leading-[1.4] text-zinc-700 font-medium tracking-tight">
           {words.map((word, i) => (
             <WordHighlight
               key={i}
@@ -30,8 +30,9 @@ export default function ScrollHighlightSection() {
               {word}
             </WordHighlight>
           ))}
-        </motion.p>
+        </p>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
     </section>
   )
 }
@@ -47,21 +48,19 @@ function WordHighlight({
   total: number
   scrollYProgress: any
 }) {
-  const start = index / total
-  const end = Math.min((index + 1) / total, 1)
+  const range = [index / total, Math.min((index + 1.5) / total, 1)]
 
-  const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1])
-  const color = useTransform(
-    scrollYProgress,
-    [start, (start + end) / 2, end],
-    ["#52525b", "#f472b6", "#fafafa"],
-  )
+  const style = {
+    opacity: useTransform(scrollYProgress, range, [0.08, 1]),
+    color: useTransform(
+      scrollYProgress,
+      [range[0], (range[0] + range[1]) / 2, range[1]],
+      ["#3f3f46", "#f9a8d4", "#fafafa"],
+    ),
+  }
 
   return (
-    <motion.span
-      style={{ opacity, color }}
-      className="inline transition-colors duration-75"
-    >
+    <motion.span style={style} className="inline">
       {children}{" "}
     </motion.span>
   )
