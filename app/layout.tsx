@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
+import SmoothScrollProvider from "@/components/SmoothScrollProvider"
 
 export const metadata: Metadata = {
   title: "ScreenshotPro — Beautiful Screenshots for Modern Teams",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="min-h-dvh bg-black font-sans antialiased">{children}</body>
+      <body className="min-h-dvh bg-black font-sans antialiased">
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      </body>
     </html>
   )
 }

@@ -17,38 +17,45 @@ const items = [
     desc: "See exactly how it'll look before you capture. WYSIWYG at its best.",
     icon: Eye,
     span: "md:col-span-2",
+    color: "from-pink-500/20 to-rose-500/10",
   },
   {
     title: "99.9% Uptime",
     desc: "Enterprise infrastructure. Always accessible.",
     icon: Shield,
+    color: "from-purple-500/20 to-violet-500/10",
   },
   {
     title: "Keyboard First",
     desc: "Every action has a shortcut. Never touch the mouse.",
     icon: Keyboard,
+    color: "from-cyan-500/20 to-teal-500/10",
   },
   {
     title: "Team Workspaces",
     desc: "Shared libraries, annotation workflows, approval flows.",
     icon: Users,
     span: "md:col-span-2",
+    color: "from-orange-500/20 to-amber-500/10",
   },
   {
     title: "Integrations",
     desc: "Slack, GitHub, Jira, Linear, Figma — your screenshots flow where work happens.",
     icon: Blocks,
     span: "md:col-span-2",
+    color: "from-emerald-500/20 to-green-500/10",
   },
   {
     title: "Analytics",
     desc: "Know when your team has seen the feedback.",
     icon: BarChart3,
+    color: "from-rose-500/20 to-pink-500/10",
   },
   {
     title: "Custom Branding",
     desc: "White-label everything. Your brand, your domain.",
     icon: Palette,
+    color: "from-blue-500/20 to-indigo-500/10",
   },
 ]
 
@@ -86,16 +93,20 @@ export default function BentoGridSection() {
                 delay: i * 0.04,
                 ease: [0.23, 1, 0.32, 1],
               }}
-              className={`${item.span || ""} group relative rounded-xl border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all duration-300 hover:border-zinc-700/70 hover:bg-zinc-900/40`}
+              className={`${item.span || ""} group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all duration-500 hover:border-zinc-700/70`}
             >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${item.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10 flex items-start gap-4">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/50 ring-1 ring-zinc-700/30">
-                  <item.icon className="h-4 w-4 text-zinc-400" />
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent blur-sm opacity-30" />
+                  <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/60 ring-1 ring-white/5">
+                    <item.icon className="h-4 w-4 text-zinc-300" />
+                  </div>
                 </div>
                 <div>
                   <h3 className="text-[15px] font-semibold text-white">{item.title}</h3>
-                  <p className="mt-1 text-sm text-zinc-500 leading-relaxed">
+                  <p className="mt-1 text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors duration-300">
                     {item.desc}
                   </p>
                 </div>
