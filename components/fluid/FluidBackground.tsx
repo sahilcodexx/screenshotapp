@@ -543,9 +543,9 @@ export default function FluidBackground() {
     let texType: number = gl.HALF_FLOAT
 
     if (!supportRenderTextureFormat(rgba.internalFormat, rgba.format, texType)) {
-      rgba = { internalFormat: gl.RGBA, format: gl.RGBA } as typeof rgba
-      rg = { internalFormat: gl.RGBA, format: gl.RGBA } as typeof rg
-      r = { internalFormat: gl.RGBA, format: gl.RGBA } as typeof r
+      rgba = { internalFormat: gl.RGBA, format: gl.RGBA } as unknown as typeof rgba
+      rg = { internalFormat: gl.RGBA, format: gl.RGBA } as unknown as typeof rg
+      r = { internalFormat: gl.RGBA, format: gl.RGBA } as unknown as typeof r
       texType = gl.UNSIGNED_BYTE
     }
 
