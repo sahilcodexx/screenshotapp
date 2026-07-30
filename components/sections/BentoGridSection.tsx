@@ -1,118 +1,152 @@
 "use client"
 
-import { motion } from "motion/react"
-import {
-  Eye,
-  Shield,
-  Keyboard,
-  Users,
-  Blocks,
-  BarChart3,
-  Palette,
-} from "lucide-react"
+import React from "react"
+import { motion } from "framer-motion"
+import { BentoCard } from "@/components/ui/bento-card"
+import { ConsistencyParticleVisual } from "@/components/bento/ConsistencyParticleVisual"
+import { CountdownTimerWidget } from "@/components/bento/CountdownTimerWidget"
+import { HeatmapVisual } from "@/components/bento/HeatmapVisual"
+import { ActivityFeedVisual } from "@/components/bento/ActivityFeedVisual"
+import dynamic from "next/dynamic"
 
-const items = [
-  {
-    title: "Real-time Preview",
-    desc: "See exactly how it'll look before you capture. WYSIWYG at its best.",
-    icon: Eye,
-    span: "md:col-span-2",
-    color: "from-pink-500/20 to-rose-500/10",
-  },
-  {
-    title: "99.9% Uptime",
-    desc: "Enterprise infrastructure. Always accessible.",
-    icon: Shield,
-    color: "from-purple-500/20 to-violet-500/10",
-  },
-  {
-    title: "Keyboard First",
-    desc: "Every action has a shortcut. Never touch the mouse.",
-    icon: Keyboard,
-    color: "from-cyan-500/20 to-teal-500/10",
-  },
-  {
-    title: "Team Workspaces",
-    desc: "Shared libraries, annotation workflows, approval flows.",
-    icon: Users,
-    span: "md:col-span-2",
-    color: "from-orange-500/20 to-amber-500/10",
-  },
-  {
-    title: "Integrations",
-    desc: "Slack, GitHub, Jira, Linear, Figma — your screenshots flow where work happens.",
-    icon: Blocks,
-    span: "md:col-span-2",
-    color: "from-emerald-500/20 to-green-500/10",
-  },
-  {
-    title: "Analytics",
-    desc: "Know when your team has seen the feedback.",
-    icon: BarChart3,
-    color: "from-rose-500/20 to-pink-500/10",
-  },
-  {
-    title: "Custom Branding",
-    desc: "White-label everything. Your brand, your domain.",
-    icon: Palette,
-    color: "from-blue-500/20 to-indigo-500/10",
-  },
-]
+const GlobalGlobeVisual = dynamic(
+  () => import("@/components/bento/GlobalGlobeVisual").then((m) => m.GlobalGlobeVisual),
+  { ssr: false }
+)
 
 export default function BentoGridSection() {
   return (
-    <section className="relative py-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="relative py-24 md:py-36 bg-black overflow-hidden select-none">
+      {/* Background ambient lighting */}
+      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-purple-600/10 blur-[160px] rounded-full" />
+      <div className="pointer-events-none absolute bottom-10 right-10 w-[700px] h-[500px] bg-sky-600/10 blur-[150px] rounded-full" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-14"
+          className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-zinc-500">
-            Everything Included
+          <span className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-1 text-xs font-mono font-semibold uppercase tracking-widest text-purple-300 shadow-sm">
+            ★ Modern Bento Suite
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            One tool, endless possibilities
+          <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+            Designed for performance.
+            <br />
+            <span className="bg-gradient-to-r from-purple-400 via-sky-400 to-amber-300 bg-clip-text text-transparent">
+              Engineered for perfection.
+            </span>
           </h2>
-          <p className="mt-2 text-sm text-zinc-500 max-w-sm mx-auto">
-            More than screenshots. A complete visual communication platform.
+          <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
+            Beautiful tinted cards, real-time interactive UI widgets, 3D point-cloud visuals, and live telemetry feeds.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {items.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.04,
-                ease: [0.23, 1, 0.32, 1],
-              }}
-              className={`${item.span || ""} group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all duration-500 hover:border-zinc-700/70`}
-            >
-              <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${item.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
-              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent blur-sm opacity-30" />
-                  <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/60 ring-1 ring-white/5">
-                    <item.icon className="h-4 w-4 text-zinc-300" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-[15px] font-semibold text-white">{item.title}</h3>
-                  <p className="mt-1 text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors duration-300">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        {/* Master Bento Grid - 12 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          
+          {/* Card 1: 14 Days Consistency (4 Columns on Desktop) */}
+          <BentoCard
+            className="md:col-span-12 lg:col-span-4 rounded-[32px] bg-gradient-to-b from-purple-500/15 via-purple-950/40 to-zinc-950 border-purple-500/20 hover:border-purple-400/40 flex flex-col justify-between p-8"
+            glowColor="rgba(168, 85, 247, 0.25)"
+          >
+            <ConsistencyParticleVisual />
+
+            <div className="mt-6">
+              <span className="text-3xl font-extrabold text-white tracking-tight block">
+                14 days
+              </span>
+              <h3 className="text-2xl font-bold text-purple-200 tracking-tight mt-0.5">
+                consistency
+              </h3>
+              <p className="mt-3 text-sm text-purple-200/70 leading-relaxed">
+                Build daily momentum and see your focus & screenshot streak grow with every completed session.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* Card 2: Timer Clock / Build your own countdown (8 Columns on Desktop) */}
+          <BentoCard
+            className="md:col-span-12 lg:col-span-8 rounded-[32px] bg-gradient-to-b from-sky-500/15 via-sky-950/40 to-zinc-950 border-sky-500/20 hover:border-sky-400/40 flex flex-col md:flex-row items-center justify-between gap-8 p-8"
+            glowColor="rgba(56, 189, 248, 0.25)"
+          >
+            <div className="md:w-1/2">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-sky-400">
+                TIMED SHUTTER
+              </span>
+              <h3 className="text-3xl font-bold text-white tracking-tight mt-2">
+                Timer Clock
+              </h3>
+              <h4 className="text-2xl font-semibold text-sky-200/90 tracking-tight mt-1">
+                Build your own countdown.
+              </h4>
+              <p className="mt-3 text-sm text-sky-200/70 leading-relaxed">
+                Choose hours, minutes, and seconds, then start the shutter timer for hands-free region captures.
+              </p>
+            </div>
+
+            <div className="md:w-1/2 w-full flex justify-center">
+              <CountdownTimerWidget />
+            </div>
+          </BentoCard>
+
+          {/* Card 3: Heatmap of your consistency (4 Columns on Desktop) */}
+          <BentoCard
+            className="md:col-span-12 lg:col-span-4 rounded-[32px] bg-gradient-to-b from-amber-500/15 via-amber-950/40 to-zinc-950 border-amber-500/20 hover:border-amber-400/40 flex flex-col justify-between p-8"
+            glowColor="rgba(245, 158, 11, 0.25)"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-white tracking-tight">
+                Heatmap of your
+              </h3>
+              <h4 className="text-2xl font-bold text-amber-300 tracking-tight">
+                consistency
+              </h4>
+              <p className="mt-2.5 text-sm text-amber-200/70 leading-relaxed mb-6">
+                Visualize your dedication over the entire year with a GitHub-style activity contribution map.
+              </p>
+            </div>
+
+            <HeatmapVisual />
+          </BentoCard>
+
+          {/* Card 4: Real-time activity feed (4 Columns on Desktop) */}
+          <BentoCard
+            className="md:col-span-12 lg:col-span-4 rounded-[32px] bg-gradient-to-b from-emerald-500/15 via-emerald-950/40 to-zinc-950 border-emerald-500/20 hover:border-emerald-400/40 flex flex-col justify-between p-8"
+            glowColor="rgba(16, 185, 129, 0.25)"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-emerald-300 tracking-tight">
+                Real-time activity feed
+              </h3>
+              <p className="mt-2.5 text-sm text-emerald-200/70 leading-relaxed mb-5">
+                Get instant feedback on session completions, streak milestones, and team progress.
+              </p>
+            </div>
+
+            <ActivityFeedVisual />
+          </BentoCard>
+
+          {/* Card 5: Global focus community (4 Columns on Desktop) */}
+          <BentoCard
+            className="md:col-span-12 lg:col-span-4 rounded-[32px] bg-gradient-to-b from-violet-500/15 via-violet-950/40 to-zinc-950 border-violet-500/20 hover:border-violet-400/40 flex flex-col justify-between p-8"
+            glowColor="rgba(139, 92, 246, 0.25)"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-violet-300 tracking-tight">
+                Global focus community
+              </h3>
+              <p className="mt-2.5 text-sm text-violet-200/70 leading-relaxed mb-2">
+                Join students and developers worldwide tracking focus sessions & visual feedback in real time.
+              </p>
+            </div>
+
+            <GlobalGlobeVisual />
+          </BentoCard>
+
         </div>
       </div>
     </section>
