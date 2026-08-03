@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 const text =
-  "Every pixel tells a story. ScreenshotPro transforms how your team captures, annotates, and shares visual feedback. No more endless threads of unclear images. Just crisp, contextual screenshots that communicate exactly what you mean.";
+  "Every pixel tells a story. ScreenshotPro transforms how your team captures, annotates, and shares visual feedback. No more endless threads of unclear images.";
 
 const words = text.split(" ");
 
@@ -13,11 +13,13 @@ export default function ScrollHighlightSection() {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end center"],
+    // Finish the reveal while the paragraph is still in the middle area,
+    // so all words are visible before reaching the very top.
+    offset: ["start 70%", "start 0%"],
   });
 
   return (
-    <section ref={ref} className="relative py-48 md:py-56 min-h-screen">
+    <section ref={ref} className="relative py-48 md:py-60 min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         <p className="text-2xl sm:text-3xl md:text-4xl leading-[1.4] text-zinc-700 font-medium tracking-tight">
           {words.map((word, i) => (
@@ -48,10 +50,10 @@ function WordHighlight({
   total: number;
   scrollYProgress: any;
 }) {
-  const range = [index / total, Math.min((index + 1.5) / total, 1)];
+  const range = [index / total, Math.min((index + 1 ) / total, 1)];
 
   const style = {
-    opacity: useTransform(scrollYProgress, range, [0.08, 1]),
+    opacity: useTransform(scrollYProgress, range, [0.08, 2]),
     color: useTransform(
       scrollYProgress,
       [range[0], (range[0] + range[1]) / 2, range[1]],
